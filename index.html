@@ -88,7 +88,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">2</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">1</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">2</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">3</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">1</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">2</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -164,7 +164,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-count">3</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -226,8 +226,18 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
+      
 
-      <time title="创建时间：2023-03-14 21:30:53" itemprop="dateCreated datePublished" datetime="2023-03-14T21:30:53+08:00">2023-03-14</time>
+      <time title="创建时间：2023-03-14 21:30:53 / 修改时间：23:40:43" itemprop="dateCreated datePublished" datetime="2023-03-14T21:30:53+08:00">2023-03-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/LeetCode%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/" itemprop="url" rel="index"><span itemprop="name">LeetCode每日一题</span></a>
+        </span>
     </span>
 
   
@@ -240,7 +250,17 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>题目来自LeetCode：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/find-valid-matrix-given-row-and-column-sums/">https://leetcode.cn/problems/find-valid-matrix-given-row-and-column-sums/</a></p>
+<h1 id="题目（难度：中等）"><a href="#题目（难度：中等）" class="headerlink" title="题目（难度：中等）"></a>题目（难度：中等）</h1><p>给你两个非负整数数组 rowSum 和 colSum ，其中 rowSum[i] 是二维矩阵中第 i 行元素的和， colSum[j] 是第 j 列元素的和。换言之你不知道矩阵里的每个元素，但是你知道每一行和每一列的和。<br>请找到大小为 rowSum.length x colSum.length 的任意 非负整数 矩阵，且该矩阵满足 rowSum 和 colSum 的要求。<br>请你返回任意一个满足题目要求的二维矩阵，题目保证存在 至少一个 可行矩阵。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">示例 1：</span><br><span class="line">输入：rowSum = [3,8], colSum = [4,7]</span><br><span class="line">输出：[[3,0],</span><br><span class="line">      [1,7]]</span><br><span class="line">解释：</span><br><span class="line">第 0 行：3 + 0 = 3 == rowSum[0]</span><br><span class="line">第 1 行：1 + 7 = 8 == rowSum[1]</span><br><span class="line">第 0 列：3 + 1 = 4 == colSum[0]</span><br><span class="line">第 1 列：0 + 7 = 7 == colSum[1]</span><br><span class="line">行和列的和都满足题目要求，且所有矩阵元素都是非负的。</span><br><span class="line">另一个可行的矩阵为：[[1,2],</span><br><span class="line">                  [3,5]]</span><br><span class="line">提示：</span><br><span class="line">1 &lt;= rowSum.length, colSum.length &lt;= 500</span><br><span class="line">0 &lt;= rowSum[i], colSum[i] &lt;= 10e8</span><br><span class="line">sum(rowSum) == sum(colSum)</span><br></pre></td></tr></table></figure>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/03/14/1605-%E7%BB%99%E5%AE%9A%E8%A1%8C%E5%92%8C%E5%88%97%E7%9A%84%E5%92%8C%E6%B1%82%E5%8F%AF%E8%A1%8C%E7%9F%A9%E9%98%B5/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -294,9 +314,15 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2023-03-13 17:15:18 / 修改时间：23:20:21" itemprop="dateCreated datePublished" datetime="2023-03-13T17:15:18+08:00">2023-03-13</time>
+      <time title="创建时间：2023-03-13 17:15:18" itemprop="dateCreated datePublished" datetime="2023-03-13T17:15:18+08:00">2023-03-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-03-14 21:39:09" itemprop="dateModified" datetime="2023-03-14T21:39:09+08:00">2023-03-14</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
