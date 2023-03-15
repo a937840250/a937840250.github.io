@@ -21,15 +21,15 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"a937840250.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.15.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"default"},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":true,"nav":null,"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":true,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":true,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="前言题目来自：https:&#x2F;&#x2F;leetcode.cn&#x2F;problems&#x2F;minimum-hours-of-training-to-win-a-competition&#x2F; 题目（难度：简单）你正在参加一场比赛，给你两个 正 整数 initialEnergy 和 initialExperience 分别表示你的初始精力和初始经验。另给你两个下标从 0 开始的整数数组 energy 和 experienc">
+    <meta name="description" content="前言题目来自LeetCode：https:&#x2F;&#x2F;leetcode.cn&#x2F;problems&#x2F;minimum-hours-of-training-to-win-a-competition&#x2F; 题目（难度：简单）你正在参加一场比赛，给你两个 正 整数 initialEnergy 和 initialExperience 分别表示你的初始精力和初始经验。另给你两个下标从 0 开始的整数数组 energy 和 e">
 <meta property="og:type" content="article">
 <meta property="og:title" content="2383.赢得比赛需要的最少训练时长">
 <meta property="og:url" content="https://a937840250.github.io/2023/03/13/2383-%E8%B5%A2%E5%BE%97%E6%AF%94%E8%B5%9B%E9%9C%80%E8%A6%81%E7%9A%84%E6%9C%80%E5%B0%91%E8%AE%AD%E7%BB%83%E6%97%B6%E9%95%BF/index.html">
 <meta property="og:site_name" content="唯静美">
-<meta property="og:description" content="前言题目来自：https:&#x2F;&#x2F;leetcode.cn&#x2F;problems&#x2F;minimum-hours-of-training-to-win-a-competition&#x2F; 题目（难度：简单）你正在参加一场比赛，给你两个 正 整数 initialEnergy 和 initialExperience 分别表示你的初始精力和初始经验。另给你两个下标从 0 开始的整数数组 energy 和 experienc">
+<meta property="og:description" content="前言题目来自LeetCode：https:&#x2F;&#x2F;leetcode.cn&#x2F;problems&#x2F;minimum-hours-of-training-to-win-a-competition&#x2F; 题目（难度：简单）你正在参加一场比赛，给你两个 正 整数 initialEnergy 和 initialExperience 分别表示你的初始精力和初始经验。另给你两个下标从 0 开始的整数数组 energy 和 e">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-03-13T09:15:18.000Z">
-<meta property="article:modified_time" content="2023-03-14T13:39:09.186Z">
+<meta property="article:modified_time" content="2023-03-15T10:00:40.651Z">
 <meta property="article:author" content="小码农">
 <meta property="article:tag" content="LeetCode每日一题">
 <meta property="article:tag" content="模拟">
@@ -92,7 +92,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">3</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">1</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">2</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">4</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">1</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">3</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -158,7 +158,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-count">3</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -169,7 +169,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -240,7 +240,7 @@
         <i class="far fa-calendar-check"></i>
       </span>
       <span class="post-meta-item-text">更新于</span>
-      <time title="修改时间：2023-03-14 21:39:09" itemprop="dateModified" datetime="2023-03-14T21:39:09+08:00">2023-03-14</time>
+      <time title="修改时间：2023-03-15 18:00:40" itemprop="dateModified" datetime="2023-03-15T18:00:40+08:00">2023-03-15</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -269,7 +269,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>题目来自：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimum-hours-of-training-to-win-a-competition/">https://leetcode.cn/problems/minimum-hours-of-training-to-win-a-competition/</a></p>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>题目来自LeetCode：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/minimum-hours-of-training-to-win-a-competition/">https://leetcode.cn/problems/minimum-hours-of-training-to-win-a-competition/</a></p>
 <h1 id="题目（难度：简单）"><a href="#题目（难度：简单）" class="headerlink" title="题目（难度：简单）"></a>题目（难度：简单）</h1><p>你正在参加一场比赛，给你两个 正 整数 initialEnergy 和 initialExperience 分别表示你的初始精力和初始经验。<br>另给你两个下标从 0 开始的整数数组 energy 和 experience，长度均为 n 。<br>你将会 依次 对上 n 个对手。第 i 个对手的精力和经验分别用 energy[i] 和 experience[i] 表示。当你对上对手时，需要在经验和精力上都 严格 超过对手才能击败他们，然后在可能的情况下继续对上下一个对手。<br>击败第 i 个对手会使你的经验 增加 experience[i]，但会将你的精力 减少  energy[i] 。<br>在开始比赛前，你可以训练几个小时。每训练一个小时，你可以选择将增加经验增加 1 或者 将精力增加 1 。<br>返回击败全部 n 个对手需要训练的 最少 小时数目。</p>
 <p>实例1</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">输入：initialEnergy = 5, initialExperience = 3, energy = [1,4,3,2], experience = [2,6,3,1]</span><br><span class="line">输出：8</span><br><span class="line">解释：在 6 小时训练后，你可以将精力提高到 11 ，并且再训练 2 个小时将经验提高到 5 。</span><br><span class="line">按以下顺序与对手比赛：</span><br><span class="line">- 你的精力与经验都超过第 0 个对手，所以获胜。</span><br><span class="line">  精力变为：11 - 1 = 10 ，经验变为：5 + 2 = 7 。</span><br><span class="line">- 你的精力与经验都超过第 1 个对手，所以获胜。</span><br><span class="line">  精力变为：10 - 4 = 6 ，经验变为：7 + 6 = 13 。</span><br><span class="line">- 你的精力与经验都超过第 2 个对手，所以获胜。</span><br><span class="line">  精力变为：6 - 3 = 3 ，经验变为：13 + 3 = 16 。</span><br><span class="line">- 你的精力与经验都超过第 3 个对手，所以获胜。</span><br><span class="line">  精力变为：3 - 2 = 1 ，经验变为：16 + 1 = 17 。</span><br><span class="line">在比赛前进行了 8 小时训练，所以返回 8 。</span><br><span class="line">可以证明不存在更小的答案。</span><br></pre></td></tr></table></figure>
