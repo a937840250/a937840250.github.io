@@ -21,29 +21,31 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"a937840250.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.15.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"default"},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":true,"nav":null,"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":true,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":true,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="前言题目来自LeetCode：https:&#x2F;&#x2F;leetcode.cn&#x2F;problems&#x2F;find-valid-matrix-given-row-and-column-sums&#x2F; 题目（难度：中等）给你两个非负整数数组 rowSum 和 colSum ，其中 rowSum[i] 是二维矩阵中第 i 行元素的和， colSum[j] 是第 j 列元素的和。换言之你不知道矩阵里的每个元素，但是你知道每一">
+    <meta name="description" content="前言题目来自LeetCode：https:&#x2F;&#x2F;leetcode.cn&#x2F;problems&#x2F;split-two-strings-to-make-palindrome&#x2F; 题目（难度：中等）给你两个字符串 a 和 b ，它们长度相同。请你选择一个下标，将两个字符串都在 相同的下标 分割开。由 a 可以得到两个字符串： aprefix 和 asuffix ，满足 a &#x3D; aprefix + asu">
 <meta property="og:type" content="article">
-<meta property="og:title" content="1605.给定行和列的和求可行矩阵">
-<meta property="og:url" content="https://a937840250.github.io/2023/03/14/1605-%E7%BB%99%E5%AE%9A%E8%A1%8C%E5%92%8C%E5%88%97%E7%9A%84%E5%92%8C%E6%B1%82%E5%8F%AF%E8%A1%8C%E7%9F%A9%E9%98%B5/index.html">
+<meta property="og:title" content="1616.分割两个字符串得到回文串">
+<meta property="og:url" content="https://a937840250.github.io/2023/03/18/1616-%E5%88%86%E5%89%B2%E4%B8%A4%E4%B8%AA%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%BE%97%E5%88%B0%E5%9B%9E%E6%96%87%E4%B8%B2/index.html">
 <meta property="og:site_name" content="唯静美">
-<meta property="og:description" content="前言题目来自LeetCode：https:&#x2F;&#x2F;leetcode.cn&#x2F;problems&#x2F;find-valid-matrix-given-row-and-column-sums&#x2F; 题目（难度：中等）给你两个非负整数数组 rowSum 和 colSum ，其中 rowSum[i] 是二维矩阵中第 i 行元素的和， colSum[j] 是第 j 列元素的和。换言之你不知道矩阵里的每个元素，但是你知道每一">
+<meta property="og:description" content="前言题目来自LeetCode：https:&#x2F;&#x2F;leetcode.cn&#x2F;problems&#x2F;split-two-strings-to-make-palindrome&#x2F; 题目（难度：中等）给你两个字符串 a 和 b ，它们长度相同。请你选择一个下标，将两个字符串都在 相同的下标 分割开。由 a 可以得到两个字符串： aprefix 和 asuffix ，满足 a &#x3D; aprefix + asu">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2023-03-14T13:30:53.000Z">
-<meta property="article:modified_time" content="2023-03-14T15:40:43.401Z">
+<meta property="og:image" content="https://a937840250.github.io/2023/03/18/1616-%E5%88%86%E5%89%B2%E4%B8%A4%E4%B8%AA%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%BE%97%E5%88%B0%E5%9B%9E%E6%96%87%E4%B8%B2/1.png">
+<meta property="article:published_time" content="2023-03-18T12:59:16.000Z">
+<meta property="article:modified_time" content="2023-03-18T14:29:15.170Z">
 <meta property="article:author" content="小码农">
 <meta property="article:tag" content="LeetCode每日一题">
-<meta property="article:tag" content="贪心">
+<meta property="article:tag" content="双指针">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://a937840250.github.io/2023/03/18/1616-%E5%88%86%E5%89%B2%E4%B8%A4%E4%B8%AA%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%BE%97%E5%88%B0%E5%9B%9E%E6%96%87%E4%B8%B2/1.png">
 
 
-<link rel="canonical" href="https://a937840250.github.io/2023/03/14/1605-%E7%BB%99%E5%AE%9A%E8%A1%8C%E5%92%8C%E5%88%97%E7%9A%84%E5%92%8C%E6%B1%82%E5%8F%AF%E8%A1%8C%E7%9F%A9%E9%98%B5/">
+<link rel="canonical" href="https://a937840250.github.io/2023/03/18/1616-%E5%88%86%E5%89%B2%E4%B8%A4%E4%B8%AA%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%BE%97%E5%88%B0%E5%9B%9E%E6%96%87%E4%B8%B2/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://a937840250.github.io/2023/03/14/1605-%E7%BB%99%E5%AE%9A%E8%A1%8C%E5%92%8C%E5%88%97%E7%9A%84%E5%92%8C%E6%B1%82%E5%8F%AF%E8%A1%8C%E7%9F%A9%E9%98%B5/","path":"2023/03/14/1605-给定行和列的和求可行矩阵/","title":"1605.给定行和列的和求可行矩阵"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://a937840250.github.io/2023/03/18/1616-%E5%88%86%E5%89%B2%E4%B8%A4%E4%B8%AA%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%BE%97%E5%88%B0%E5%9B%9E%E6%96%87%E4%B8%B2/","path":"2023/03/18/1616-分割两个字符串得到回文串/","title":"1616.分割两个字符串得到回文串"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>1605.给定行和列的和求可行矩阵 | 唯静美</title>
+<title>1616.分割两个字符串得到回文串 | 唯静美</title>
   
 
 
@@ -143,7 +145,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%EF%BC%88%E9%9A%BE%E5%BA%A6%EF%BC%9A%E4%B8%AD%E7%AD%89%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">题目（难度：中等）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%A2%98%E8%A7%A3"><span class="nav-number">3.</span> <span class="nav-text">题解</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81"><span class="nav-number">4.</span> <span class="nav-text">代码</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%EF%BC%88%E9%9A%BE%E5%BA%A6%EF%BC%9A%E4%B8%AD%E7%AD%89%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">题目（难度：中等）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%A2%98%E8%A7%A3"><span class="nav-number">3.</span> <span class="nav-text">题解</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -204,7 +206,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://a937840250.github.io/2023/03/14/1605-%E7%BB%99%E5%AE%9A%E8%A1%8C%E5%92%8C%E5%88%97%E7%9A%84%E5%92%8C%E6%B1%82%E5%8F%AF%E8%A1%8C%E7%9F%A9%E9%98%B5/">
+    <link itemprop="mainEntityOfPage" href="https://a937840250.github.io/2023/03/18/1616-%E5%88%86%E5%89%B2%E4%B8%A4%E4%B8%AA%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%BE%97%E5%88%B0%E5%9B%9E%E6%96%87%E4%B8%B2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -217,12 +219,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="1605.给定行和列的和求可行矩阵 | 唯静美">
+      <meta itemprop="name" content="1616.分割两个字符串得到回文串 | 唯静美">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          1605.给定行和列的和求可行矩阵
+          1616.分割两个字符串得到回文串
         </h1>
 
         <div class="post-meta-container">
@@ -234,7 +236,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2023-03-14 21:30:53 / 修改时间：23:40:43" itemprop="dateCreated datePublished" datetime="2023-03-14T21:30:53+08:00">2023-03-14</time>
+      <time title="创建时间：2023-03-18 20:59:16 / 修改时间：22:29:15" itemprop="dateCreated datePublished" datetime="2023-03-18T20:59:16+08:00">2023-03-18</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -263,16 +265,17 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>题目来自LeetCode：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/find-valid-matrix-given-row-and-column-sums/">https://leetcode.cn/problems/find-valid-matrix-given-row-and-column-sums/</a></p>
-<h1 id="题目（难度：中等）"><a href="#题目（难度：中等）" class="headerlink" title="题目（难度：中等）"></a>题目（难度：中等）</h1><p>给你两个非负整数数组 rowSum 和 colSum ，其中 rowSum[i] 是二维矩阵中第 i 行元素的和， colSum[j] 是第 j 列元素的和。换言之你不知道矩阵里的每个元素，但是你知道每一行和每一列的和。<br>请找到大小为 rowSum.length x colSum.length 的任意 非负整数 矩阵，且该矩阵满足 rowSum 和 colSum 的要求。<br>请你返回任意一个满足题目要求的二维矩阵，题目保证存在 至少一个 可行矩阵。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">示例 1：</span><br><span class="line">输入：rowSum = [3,8], colSum = [4,7]</span><br><span class="line">输出：[[3,0],</span><br><span class="line">      [1,7]]</span><br><span class="line">解释：</span><br><span class="line">第 0 行：3 + 0 = 3 == rowSum[0]</span><br><span class="line">第 1 行：1 + 7 = 8 == rowSum[1]</span><br><span class="line">第 0 列：3 + 1 = 4 == colSum[0]</span><br><span class="line">第 1 列：0 + 7 = 7 == colSum[1]</span><br><span class="line">行和列的和都满足题目要求，且所有矩阵元素都是非负的。</span><br><span class="line">另一个可行的矩阵为：[[1,2],</span><br><span class="line">                  [3,5]]</span><br><span class="line">提示：</span><br><span class="line">1 &lt;= rowSum.length, colSum.length &lt;= 500</span><br><span class="line">0 &lt;= rowSum[i], colSum[i] &lt;= 10e8</span><br><span class="line">sum(rowSum) == sum(colSum)</span><br></pre></td></tr></table></figure>
-<span id="more"></span>
-<h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><p>本题难处在于暴力解决的时间复杂度是毁灭性的，最坏情况矩阵是每个元素都有10^8的可能，矩阵最大可达500*500&#x3D;2.5×10^5，最坏情况可达2.5×10^13。<br>从优化暴力方法的角度入手，矩阵的每个元素res[i][j]都会小于第i行的和，第j列的和，也就是说，res[i][j] &lt;&#x3D; min(rowSum[i],colSum[j])，这样搜索范围就减小了，但这远远不够。<br>由于矩阵是可以取0的，不妨先让res[i][j]取min(rowSum[i],colSum[j])，每取完一个数，就在当前行和与当前列和上减去这个数，就算用尽当行（列）的和，当行（列）剩下的元素还能用0填补。</p>
-<ol>
-<li>当且只有一行的时候，第一行的和永远会大于等于各列和，所以每次取的数都会是该列的和，数组rolSum即为答案。</li>
-<li>当行数大于等于2时，矩阵n×m（n &gt;&#x3D; 2, m &gt;&#x3D; 1）的第一行按照上述规则取，整行取完后，第一行的行和也就是rowSum[0]会变成0，而colSum整个数组的和会减少rowSum[0],因为不止一行，所以此时colSum这个数组的和还是大于等于0的，又因为每次取的是min(rowSum[i],colSum[j])，所以colSum数组里每个数都还是大于等于0的。即取完一行后仍然和之前的性质没有发生变化。从而使所需矩阵减少成(n - 1) × m，循环往复，最终会使得n &#x3D; 1，从而求出所需矩阵。</li>
-</ol>
-<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span>[][] restoreMatrix(<span class="type">int</span>[] rowSum, <span class="type">int</span>[] colSum) &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">row</span> <span class="operator">=</span> rowSum.length;</span><br><span class="line">        <span class="type">int</span> <span class="variable">col</span> <span class="operator">=</span> colSum.length;</span><br><span class="line">        <span class="type">int</span>[][] res = <span class="keyword">new</span> <span class="title class_">int</span>[row][col];</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; row; i++)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; col; j++)&#123;</span><br><span class="line">                <span class="comment">//取当前行和与列和的较小值</span></span><br><span class="line">                res[i][j] = rowSum[i] &lt; colSum[j] ? rowSum[i] : colSum[j];</span><br><span class="line">                <span class="comment">//取完在当前行和与列和中减去</span></span><br><span class="line">                rowSum[i] -= res[i][j];</span><br><span class="line">                colSum[j] -= res[i][j];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; </span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>题目来自LeetCode：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/split-two-strings-to-make-palindrome/">https://leetcode.cn/problems/split-two-strings-to-make-palindrome/</a></p>
+<h1 id="题目（难度：中等）"><a href="#题目（难度：中等）" class="headerlink" title="题目（难度：中等）"></a>题目（难度：中等）</h1><p>给你两个字符串 a 和 b ，它们长度相同。请你选择一个下标，将两个字符串都在 <strong>相同的下标</strong> 分割开。由 a 可以得到两个字符串： aprefix 和 asuffix ，满足 a &#x3D; aprefix + asuffix ，同理，由 b 可以得到两个字符串 bprefix 和 bsuffix ，满足 b &#x3D; bprefix + bsuffix 。请你判断 aprefix + bsuffix 或者 bprefix + asuffix 能否构成回文串。<br>当你将一个字符串 s 分割成 sprefix 和 ssuffix 时， ssuffix 或者 sprefix 可以为空。比方说， s &#x3D; “abc” 那么 “” + “abc” ， “a” + “bc” ， “ab” + “c” 和 “abc” + “” 都是合法分割。<br>如果 <strong>能构成回文字符串</strong> ，那么请返回 true，否则返回 false 。<br>注意， x + y 表示连接字符串 x 和 y 。<br><strong>示例 1：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">输入：a = <span class="string">&quot;abdef&quot;</span>, b = <span class="string">&quot;fecab&quot;</span></span><br><span class="line">输出：<span class="literal">true</span></span><br><span class="line">解释：</span><br><span class="line">aprefix = <span class="string">&quot;abd&quot;</span>, asuffix = <span class="string">&quot;ef&quot;</span></span><br><span class="line">bprefix = <span class="string">&quot;fec&quot;</span>, bsuffix = <span class="string">&quot;ab&quot;</span></span><br><span class="line">那么 bprefix + asuffix = <span class="string">&quot;fec&quot;</span> + <span class="string">&quot;ef&quot;</span> = <span class="string">&quot;fecef&quot;</span> 是回文串。</span><br></pre></td></tr></table></figure>
+<p><strong>提示：</strong></p>
+<ul>
+<li>1 &lt;&#x3D; a.length, b.length &lt;&#x3D; 10^5</li>
+<li>a.length &#x3D;&#x3D; b.length</li>
+<li>a 和 b 都只包含小写英文字母<span id="more"></span></li>
+</ul>
+<h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><p>首先，回顾单字符串如何判断其是否是回文串，只需要使用双指针，分别指向一头一尾，判断两个指针所指的字符是否相等，若相等则两个指针往中间靠，直到两个指针相遇或交叉时，之前的判断都成立，那么这个字符串则是回文串。<br>此题就是回文字符串的延申，在某处切割字符串会形成4个新的字符串：aprefix,asuffix,bprefix,bsuffix，而新字符串只能是aprefix + bsuffix或则bprefix + asuffix。那么先考虑第一种情况：aprefix + bsuffix。<br><img data-src="/2023/03/18/1616-%E5%88%86%E5%89%B2%E4%B8%A4%E4%B8%AA%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%BE%97%E5%88%B0%E5%9B%9E%E6%96%87%E4%B8%B2/1.png" alt="示例"><br>既然是a串前面加上b串后面，那么新串要是回文串，那就可以用判断单串的方法设两个指针，一个在a串的前头，一个在b串的后头，当判断到不相等的时候，如图所示竖线位置，进一步将字符串分成6段，因为当前只考虑第一种情况，所以3，6不需要考虑，当2，5其中一个为回文串的时候，一定能找到一个切位使得第一种情况为回文串。若2为回文串，则在2的末端作为切点，若5为回文串，则在1的结尾作为切点，若2，5都不是回文串，那么第一种情况则无法形成回文串。第二种情况，实则就是将啊a串和b串调换位置，方法是一致的。</p>
+
     </div>
 
     
@@ -289,7 +292,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://a937840250.github.io/2023/03/14/1605-%E7%BB%99%E5%AE%9A%E8%A1%8C%E5%92%8C%E5%88%97%E7%9A%84%E5%92%8C%E6%B1%82%E5%8F%AF%E8%A1%8C%E7%9F%A9%E9%98%B5/" title="1605.给定行和列的和求可行矩阵">https://a937840250.github.io/2023/03/14/1605-给定行和列的和求可行矩阵/</a>
+      <a href="https://a937840250.github.io/2023/03/18/1616-%E5%88%86%E5%89%B2%E4%B8%A4%E4%B8%AA%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%BE%97%E5%88%B0%E5%9B%9E%E6%96%87%E4%B8%B2/" title="1616.分割两个字符串得到回文串">https://a937840250.github.io/2023/03/18/1616-分割两个字符串得到回文串/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -299,21 +302,18 @@
 
           <div class="post-tags">
               <a href="/tags/LeetCode%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/" rel="tag"># LeetCode每日一题</a>
-              <a href="/tags/%E8%B4%AA%E5%BF%83/" rel="tag"># 贪心</a>
+              <a href="/tags/%E5%8F%8C%E6%8C%87%E9%92%88/" rel="tag"># 双指针</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2023/03/13/2383-%E8%B5%A2%E5%BE%97%E6%AF%94%E8%B5%9B%E9%9C%80%E8%A6%81%E7%9A%84%E6%9C%80%E5%B0%91%E8%AE%AD%E7%BB%83%E6%97%B6%E9%95%BF/" rel="prev" title="2383.赢得比赛需要的最少训练时长">
-                  <i class="fa fa-chevron-left"></i> 2383.赢得比赛需要的最少训练时长
+                <a href="/2023/03/17/2389-%E5%92%8C%E6%9C%89%E9%99%90%E7%9A%84%E6%9C%80%E9%95%BF%E5%AD%90%E5%BA%8F%E5%88%97/" rel="prev" title="2389.和有限的最长子序列">
+                  <i class="fa fa-chevron-left"></i> 2389.和有限的最长子序列
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2023/03/15/1615-%E6%9C%80%E5%A4%A7%E7%BD%91%E7%BB%9C%E7%A7%A9/" rel="next" title="1615.最大网络秩">
-                  1615.最大网络秩 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
@@ -404,7 +404,7 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
 
-<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"a937840250","repo":"a937840250","client_id":"9f2c7299881b2946b170","client_secret":"9e5ee70c208b7d935519d46e21b22168b55f2027","admin_user":"a937840250","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"73da5b68d0261f060dde0fe13f9bdab1"}</script>
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"a937840250","repo":"a937840250","client_id":"9f2c7299881b2946b170","client_secret":"9e5ee70c208b7d935519d46e21b22168b55f2027","admin_user":"a937840250","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"f3e2a1a3e96673221374cb7fa4b93d06"}</script>
 <script src="/js/third-party/comments/gitalk.js"></script>
 
 </body>

@@ -88,7 +88,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">7</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">1</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">5</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">8</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">1</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">6</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -153,7 +153,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -164,7 +164,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-count">8</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -189,6 +189,99 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://a937840250.github.io/2023/03/18/1616-%E5%88%86%E5%89%B2%E4%B8%A4%E4%B8%AA%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%BE%97%E5%88%B0%E5%9B%9E%E6%96%87%E4%B8%B2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="小码农">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="唯静美">
+      <meta itemprop="description" content="唯有静下心来，才能发现美的存在！">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 唯静美">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/03/18/1616-%E5%88%86%E5%89%B2%E4%B8%A4%E4%B8%AA%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%BE%97%E5%88%B0%E5%9B%9E%E6%96%87%E4%B8%B2/" class="post-title-link" itemprop="url">1616.分割两个字符串得到回文串</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2023-03-18 20:59:16 / 修改时间：22:29:15" itemprop="dateCreated datePublished" datetime="2023-03-18T20:59:16+08:00">2023-03-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/LeetCode%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/" itemprop="url" rel="index"><span itemprop="name">LeetCode每日一题</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>题目来自LeetCode：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/split-two-strings-to-make-palindrome/">https://leetcode.cn/problems/split-two-strings-to-make-palindrome/</a></p>
+<h1 id="题目（难度：中等）"><a href="#题目（难度：中等）" class="headerlink" title="题目（难度：中等）"></a>题目（难度：中等）</h1><p>给你两个字符串 a 和 b ，它们长度相同。请你选择一个下标，将两个字符串都在 <strong>相同的下标</strong> 分割开。由 a 可以得到两个字符串： aprefix 和 asuffix ，满足 a &#x3D; aprefix + asuffix ，同理，由 b 可以得到两个字符串 bprefix 和 bsuffix ，满足 b &#x3D; bprefix + bsuffix 。请你判断 aprefix + bsuffix 或者 bprefix + asuffix 能否构成回文串。<br>当你将一个字符串 s 分割成 sprefix 和 ssuffix 时， ssuffix 或者 sprefix 可以为空。比方说， s &#x3D; “abc” 那么 “” + “abc” ， “a” + “bc” ， “ab” + “c” 和 “abc” + “” 都是合法分割。<br>如果 <strong>能构成回文字符串</strong> ，那么请返回 true，否则返回 false 。<br>注意， x + y 表示连接字符串 x 和 y 。<br><strong>示例 1：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">输入：a = <span class="string">&quot;abdef&quot;</span>, b = <span class="string">&quot;fecab&quot;</span></span><br><span class="line">输出：<span class="literal">true</span></span><br><span class="line">解释：</span><br><span class="line">aprefix = <span class="string">&quot;abd&quot;</span>, asuffix = <span class="string">&quot;ef&quot;</span></span><br><span class="line">bprefix = <span class="string">&quot;fec&quot;</span>, bsuffix = <span class="string">&quot;ab&quot;</span></span><br><span class="line">那么 bprefix + asuffix = <span class="string">&quot;fec&quot;</span> + <span class="string">&quot;ef&quot;</span> = <span class="string">&quot;fecef&quot;</span> 是回文串。</span><br></pre></td></tr></table></figure>
+<p><strong>提示：</strong></p>
+<ul>
+<li>1 &lt;&#x3D; a.length, b.length &lt;&#x3D; 10^5</li>
+<li>a.length &#x3D;&#x3D; b.length</li>
+<li>a 和 b 都只包含小写英文字母
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/03/18/1616-%E5%88%86%E5%89%B2%E4%B8%A4%E4%B8%AA%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%BE%97%E5%88%B0%E5%9B%9E%E6%96%87%E4%B8%B2/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
