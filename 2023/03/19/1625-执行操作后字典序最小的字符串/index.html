@@ -21,31 +21,29 @@
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"a937840250.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.15.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"default"},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":true,"nav":null,"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":true,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":true,"preload":false}}</script><script src="/js/config.js"></script>
 
-    <meta name="description" content="前言题目来自LeetCode：https:&#x2F;&#x2F;leetcode.cn&#x2F;problems&#x2F;split-two-strings-to-make-palindrome&#x2F; 题目（难度：中等）给你两个字符串 a 和 b ，它们长度相同。请你选择一个下标，将两个字符串都在 相同的下标 分割开。由 a 可以得到两个字符串： aprefix 和 asuffix ，满足 a &#x3D; aprefix + asu">
+    <meta name="description" content="前言题目来自LeetCode：https:&#x2F;&#x2F;leetcode.cn&#x2F;problems&#x2F;lexicographically-smallest-string-after-applying-operations&#x2F; 题目（难度：中等）给你一个字符串 s 以及两个整数 a 和 b 。其中，字符串 s 的长度为偶数，且仅由数字 0 到 9 组成。你可以在 s 上按任意顺序多次执行下面两个操作之一：  累加：">
 <meta property="og:type" content="article">
-<meta property="og:title" content="1616.分割两个字符串得到回文串">
-<meta property="og:url" content="https://a937840250.github.io/2023/03/18/1616-%E5%88%86%E5%89%B2%E4%B8%A4%E4%B8%AA%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%BE%97%E5%88%B0%E5%9B%9E%E6%96%87%E4%B8%B2/index.html">
+<meta property="og:title" content="1625.执行操作后字典序最小的字符串">
+<meta property="og:url" content="https://a937840250.github.io/2023/03/19/1625-%E6%89%A7%E8%A1%8C%E6%93%8D%E4%BD%9C%E5%90%8E%E5%AD%97%E5%85%B8%E5%BA%8F%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2/index.html">
 <meta property="og:site_name" content="唯静美">
-<meta property="og:description" content="前言题目来自LeetCode：https:&#x2F;&#x2F;leetcode.cn&#x2F;problems&#x2F;split-two-strings-to-make-palindrome&#x2F; 题目（难度：中等）给你两个字符串 a 和 b ，它们长度相同。请你选择一个下标，将两个字符串都在 相同的下标 分割开。由 a 可以得到两个字符串： aprefix 和 asuffix ，满足 a &#x3D; aprefix + asu">
+<meta property="og:description" content="前言题目来自LeetCode：https:&#x2F;&#x2F;leetcode.cn&#x2F;problems&#x2F;lexicographically-smallest-string-after-applying-operations&#x2F; 题目（难度：中等）给你一个字符串 s 以及两个整数 a 和 b 。其中，字符串 s 的长度为偶数，且仅由数字 0 到 9 组成。你可以在 s 上按任意顺序多次执行下面两个操作之一：  累加：">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://a937840250.github.io/2023/03/18/1616-%E5%88%86%E5%89%B2%E4%B8%A4%E4%B8%AA%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%BE%97%E5%88%B0%E5%9B%9E%E6%96%87%E4%B8%B2/1.png">
-<meta property="article:published_time" content="2023-03-18T12:59:16.000Z">
-<meta property="article:modified_time" content="2023-03-18T15:41:17.602Z">
+<meta property="article:published_time" content="2023-03-19T14:27:44.000Z">
+<meta property="article:modified_time" content="2023-03-19T15:48:42.900Z">
 <meta property="article:author" content="小码农">
 <meta property="article:tag" content="LeetCode每日一题">
-<meta property="article:tag" content="双指针">
+<meta property="article:tag" content="枚举">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://a937840250.github.io/2023/03/18/1616-%E5%88%86%E5%89%B2%E4%B8%A4%E4%B8%AA%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%BE%97%E5%88%B0%E5%9B%9E%E6%96%87%E4%B8%B2/1.png">
 
 
-<link rel="canonical" href="https://a937840250.github.io/2023/03/18/1616-%E5%88%86%E5%89%B2%E4%B8%A4%E4%B8%AA%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%BE%97%E5%88%B0%E5%9B%9E%E6%96%87%E4%B8%B2/">
+<link rel="canonical" href="https://a937840250.github.io/2023/03/19/1625-%E6%89%A7%E8%A1%8C%E6%93%8D%E4%BD%9C%E5%90%8E%E5%AD%97%E5%85%B8%E5%BA%8F%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://a937840250.github.io/2023/03/18/1616-%E5%88%86%E5%89%B2%E4%B8%A4%E4%B8%AA%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%BE%97%E5%88%B0%E5%9B%9E%E6%96%87%E4%B8%B2/","path":"2023/03/18/1616-分割两个字符串得到回文串/","title":"1616.分割两个字符串得到回文串"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://a937840250.github.io/2023/03/19/1625-%E6%89%A7%E8%A1%8C%E6%93%8D%E4%BD%9C%E5%90%8E%E5%AD%97%E5%85%B8%E5%BA%8F%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2/","path":"2023/03/19/1625-执行操作后字典序最小的字符串/","title":"1625.执行操作后字典序最小的字符串"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>1616.分割两个字符串得到回文串 | 唯静美</title>
+<title>1625.执行操作后字典序最小的字符串 | 唯静美</title>
   
 
 
@@ -206,7 +204,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://a937840250.github.io/2023/03/18/1616-%E5%88%86%E5%89%B2%E4%B8%A4%E4%B8%AA%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%BE%97%E5%88%B0%E5%9B%9E%E6%96%87%E4%B8%B2/">
+    <link itemprop="mainEntityOfPage" href="https://a937840250.github.io/2023/03/19/1625-%E6%89%A7%E8%A1%8C%E6%93%8D%E4%BD%9C%E5%90%8E%E5%AD%97%E5%85%B8%E5%BA%8F%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.jpg">
@@ -219,12 +217,12 @@
     </span>
 
     <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
-      <meta itemprop="name" content="1616.分割两个字符串得到回文串 | 唯静美">
+      <meta itemprop="name" content="1625.执行操作后字典序最小的字符串 | 唯静美">
       <meta itemprop="description" content="">
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          1616.分割两个字符串得到回文串
+          1625.执行操作后字典序最小的字符串
         </h1>
 
         <div class="post-meta-container">
@@ -236,7 +234,7 @@
       <span class="post-meta-item-text">发表于</span>
       
 
-      <time title="创建时间：2023-03-18 20:59:16 / 修改时间：23:41:17" itemprop="dateCreated datePublished" datetime="2023-03-18T20:59:16+08:00">2023-03-18</time>
+      <time title="创建时间：2023-03-19 22:27:44 / 修改时间：23:48:42" itemprop="dateCreated datePublished" datetime="2023-03-19T22:27:44+08:00">2023-03-19</time>
     </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
@@ -265,18 +263,24 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>题目来自LeetCode：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/split-two-strings-to-make-palindrome/">https://leetcode.cn/problems/split-two-strings-to-make-palindrome/</a></p>
-<h1 id="题目（难度：中等）"><a href="#题目（难度：中等）" class="headerlink" title="题目（难度：中等）"></a>题目（难度：中等）</h1><p>给你两个字符串 a 和 b ，它们长度相同。请你选择一个下标，将两个字符串都在 <strong>相同的下标</strong> 分割开。由 a 可以得到两个字符串： aprefix 和 asuffix ，满足 a &#x3D; aprefix + asuffix ，同理，由 b 可以得到两个字符串 bprefix 和 bsuffix ，满足 b &#x3D; bprefix + bsuffix 。请你判断 aprefix + bsuffix 或者 bprefix + asuffix 能否构成回文串。<br>当你将一个字符串 s 分割成 sprefix 和 ssuffix 时， ssuffix 或者 sprefix 可以为空。比方说， s &#x3D; “abc” 那么 “” + “abc” ， “a” + “bc” ， “ab” + “c” 和 “abc” + “” 都是合法分割。<br>如果 <strong>能构成回文字符串</strong> ，那么请返回 true，否则返回 false 。<br>注意， x + y 表示连接字符串 x 和 y 。<br><strong>示例 1：</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">输入：a = <span class="string">&quot;abdef&quot;</span>, b = <span class="string">&quot;fecab&quot;</span></span><br><span class="line">输出：<span class="literal">true</span></span><br><span class="line">解释：</span><br><span class="line">aprefix = <span class="string">&quot;abd&quot;</span>, asuffix = <span class="string">&quot;ef&quot;</span></span><br><span class="line">bprefix = <span class="string">&quot;fec&quot;</span>, bsuffix = <span class="string">&quot;ab&quot;</span></span><br><span class="line">那么 bprefix + asuffix = <span class="string">&quot;fec&quot;</span> + <span class="string">&quot;ef&quot;</span> = <span class="string">&quot;fecef&quot;</span> 是回文串。</span><br></pre></td></tr></table></figure>
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>题目来自LeetCode：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/lexicographically-smallest-string-after-applying-operations/">https://leetcode.cn/problems/lexicographically-smallest-string-after-applying-operations/</a></p>
+<h1 id="题目（难度：中等）"><a href="#题目（难度：中等）" class="headerlink" title="题目（难度：中等）"></a>题目（难度：中等）</h1><p>给你一个字符串 s 以及两个整数 a 和 b 。其中，字符串 s 的长度为偶数，且仅由数字 0 到 9 组成。<br>你可以在 s 上按任意顺序多次执行下面两个操作之一：</p>
+<ul>
+<li>累加：将  a 加到 s 中所有下标为奇数的元素上 <strong>（下标从 0 开始）</strong>。数字一旦超过 9 就会变成 0，如此循环往复。例如，s &#x3D; “3456” 且 a &#x3D; 5，则执行此操作后 s 变成 “3951”。</li>
+<li>轮转：将 s 向右轮转 b 位。例如，s &#x3D; “3456” 且 b &#x3D; 1，则执行此操作后 s 变成 “6345”。</li>
+</ul>
+<p>请你返回在 s 上执行上述操作任意次后可以得到的 <strong>字典序最小</strong> 的字符串。<br>如果两个字符串长度相同，那么字符串 a 字典序比字符串 b 小可以这样定义：在 a 和 b 出现不同的第一个位置上，字符串 a 中的字符出现在字母表中的时间早于 b 中的对应字符。例如，”0158” 字典序比 “0190” 小，因为不同的第一个位置是在第三个字符，显然 ‘5’ 出现在 ‘9’ 之前。<br><strong>示例 1：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">输入：s = <span class="string">&quot;5525&quot;</span>, a = <span class="number">9</span>, b = <span class="number">2</span></span><br><span class="line">输出：<span class="string">&quot;2050&quot;</span></span><br><span class="line">解释：执行操作如下：</span><br><span class="line">初态：<span class="string">&quot;5525&quot;</span></span><br><span class="line">轮转：<span class="string">&quot;2555&quot;</span></span><br><span class="line">累加：<span class="string">&quot;2454&quot;</span></span><br><span class="line">累加：<span class="string">&quot;2353&quot;</span></span><br><span class="line">轮转：<span class="string">&quot;5323&quot;</span></span><br><span class="line">累加：<span class="string">&quot;5222&quot;</span></span><br><span class="line">累加：<span class="string">&quot;5121&quot;</span></span><br><span class="line">轮转：<span class="string">&quot;2151&quot;</span></span><br><span class="line">累加：<span class="string">&quot;2050&quot;</span>​​​​​​​​​​​​</span><br><span class="line">无法获得字典序小于 <span class="string">&quot;2050&quot;</span> 的字符串。</span><br></pre></td></tr></table></figure>
 <p><strong>提示：</strong></p>
 <ul>
-<li>1 &lt;&#x3D; a.length, b.length &lt;&#x3D; 10^5</li>
-<li>a.length &#x3D;&#x3D; b.length</li>
-<li>a 和 b 都只包含小写英文字母<span id="more"></span></li>
+<li>2 &lt;&#x3D; s.length &lt;&#x3D; 100</li>
+<li>s.length 是偶数</li>
+<li>s 仅由数字 0 到 9 组成</li>
+<li>1 &lt;&#x3D; a &lt;&#x3D; 9</li>
+<li>1 &lt;&#x3D; b &lt;&#x3D; s.length - 1<span id="more"></span></li>
 </ul>
-<h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><p>首先，回顾单字符串如何判断其是否是回文串，只需要使用双指针，分别指向一头一尾，判断两个指针所指的字符是否相等，若相等则两个指针往中间靠，直到两个指针相遇或交叉时，之前的判断都成立，那么这个字符串则是回文串。<br>此题就是回文字符串的延申，在某处切割字符串会形成4个新的字符串：aprefix,asuffix,bprefix,bsuffix，而新字符串只能是aprefix + bsuffix或则bprefix + asuffix。那么先考虑第一种情况：aprefix + bsuffix。<br><img data-src="/2023/03/18/1616-%E5%88%86%E5%89%B2%E4%B8%A4%E4%B8%AA%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%BE%97%E5%88%B0%E5%9B%9E%E6%96%87%E4%B8%B2/1.png" alt="示例"><br>既然是a串前面加上b串后面，那么新串要是回文串，那就可以用判断单串的方法设两个指针，一个在a串的前头，一个在b串的后头，当判断到不相等的时候，如图所示竖线位置，进一步将字符串分成6段，因为当前只考虑第一种情况，所以3，4不需要考虑，当2，5其中一个为回文串的时候，一定能找到一个切位使得第一种情况为回文串。若2为回文串，则在2的末端作为切点，若5为回文串，则在1的结尾作为切点，若2，5都不是回文串，那么第一种情况则无法形成回文串。第二种情况，实则就是将a串和b串调换位置，方法是一致的。</p>
-<h1 id="代码-O-n"><a href="#代码-O-n" class="headerlink" title="代码 O(n)"></a>代码 O(n)</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">checkPalindromeFormation</span><span class="params">(String a, String b)</span> &#123;</span><br><span class="line">        <span class="comment">//第一种情况和第二种情况</span></span><br><span class="line">        <span class="keyword">return</span> check(a, b) || check(b,a);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">check</span><span class="params">(String a, String b)</span>&#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> b.length() - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(j &gt;= <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="comment">//找到竖线所在的位置</span></span><br><span class="line">            <span class="keyword">if</span>(a.charAt(i) != b.charAt(j))&#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            i++;</span><br><span class="line">            j--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//检查2，5是否为回文串</span></span><br><span class="line">        <span class="keyword">return</span> checkMid(a, i, j) || checkMid(b, i, j);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//单个字符串判断回文的方法（双指针）</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">checkMid</span><span class="params">(String a, <span class="type">int</span> i, <span class="type">int</span> j)</span>&#123;</span><br><span class="line">        <span class="keyword">while</span>(i &lt; j)&#123;</span><br><span class="line">            <span class="keyword">if</span>(a.charAt(i) != a.charAt(j))&#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            i++;</span><br><span class="line">            j--;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> i &gt;= j;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
+<h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><p>因为字符串s的长度是偶数，如果轮转数b是偶数，那么起始位置的字符奇偶性是不变的，也就是说怎样轮转，起始偶数下标的数一定不会加上a。轮转的话，在n次之后是一定会轮转回原串s。那么我们就可以枚举轮转的情况，直到轮转回s结束。<br><strong>那么加上一个数多少次一轮回呢？</strong><br>假设要被加数为x，加数为a，那么加了k次之后就是x + ka，因为超过9要变为0，那么加了k次之后就是(x + ka) % 10,根据取余的定理，(x + ka) % 10 -&gt; x % 10 + ka % 10，因为x小于10，最终加了k次后变成x + ka % 10，而且a &lt;&#x3D; 9,那么要变回x的最小k就是10，也就是说x加上10次a一定会变回x。<br>那么每次轮转的情况下枚举9次加a的情况，找到最小的字典序即可（当然，当b为奇数的时候，偶数下标也是可以加a的，所以枚举要加上偶数下标的）。</p>
+<h1 id="代码-O-n"><a href="#代码-O-n" class="headerlink" title="代码 O(n)"></a>代码 O(n)</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> String <span class="title function_">findLexSmallestString</span><span class="params">(String s, <span class="type">int</span> a, <span class="type">int</span> b)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">n</span> <span class="operator">=</span> s.length();</span><br><span class="line">        <span class="comment">//标记开始下标，如果访问到枚举过的下标，证明轮转的原来的字符串</span></span><br><span class="line">        <span class="type">boolean</span>[] vis = <span class="keyword">new</span> <span class="title class_">boolean</span>[n];</span><br><span class="line">        <span class="type">String</span> <span class="variable">res</span> <span class="operator">=</span> s;</span><br><span class="line">        <span class="comment">//延长一倍的s，容易截取轮转后的新字符串</span></span><br><span class="line">        s = s + s;</span><br><span class="line">        <span class="comment">//枚举轮转</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; !vis[i]; i = (i + b) % n) &#123;</span><br><span class="line">            vis[i] = <span class="literal">true</span>;</span><br><span class="line">            <span class="comment">//枚举奇数下标加a</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">j</span> <span class="operator">=</span> <span class="number">0</span>; j &lt; <span class="number">10</span>; j++) &#123;</span><br><span class="line">                <span class="comment">//如果b不是偶数则需要枚举偶数下标的数加a</span></span><br><span class="line">                <span class="type">int</span> <span class="variable">kLimit</span> <span class="operator">=</span> b % <span class="number">2</span> == <span class="number">0</span> ? <span class="number">0</span> : <span class="number">9</span>;</span><br><span class="line">                <span class="comment">//k = 0,相当于只在枚举奇数下标，k = 9相当于偶数下标也枚举</span></span><br><span class="line">                <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">k</span> <span class="operator">=</span> <span class="number">0</span>; k &lt;= kLimit; k++) &#123;</span><br><span class="line">                    <span class="type">char</span>[] t = s.substring(i, i + n).toCharArray();</span><br><span class="line">                    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">p</span> <span class="operator">=</span> <span class="number">1</span>; p &lt; n; p += <span class="number">2</span>) &#123;</span><br><span class="line">                        t[p] = (<span class="type">char</span>) (<span class="string">&#x27;0&#x27;</span> + (t[p] - <span class="string">&#x27;0&#x27;</span> + j * a) % <span class="number">10</span>);</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">p</span> <span class="operator">=</span> <span class="number">0</span>; p &lt; n; p += <span class="number">2</span>) &#123;</span><br><span class="line">                        t[p] = (<span class="type">char</span>) (<span class="string">&#x27;0&#x27;</span> + (t[p] - <span class="string">&#x27;0&#x27;</span> + k * a) % <span class="number">10</span>);</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="type">String</span> <span class="variable">tStr</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">String</span>(t);</span><br><span class="line">                    <span class="keyword">if</span> (tStr.compareTo(res) &lt; <span class="number">0</span>) &#123;</span><br><span class="line">                        res = tStr;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -293,7 +297,7 @@
   </li>
   <li class="post-copyright-link">
       <strong>本文链接：</strong>
-      <a href="https://a937840250.github.io/2023/03/18/1616-%E5%88%86%E5%89%B2%E4%B8%A4%E4%B8%AA%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%BE%97%E5%88%B0%E5%9B%9E%E6%96%87%E4%B8%B2/" title="1616.分割两个字符串得到回文串">https://a937840250.github.io/2023/03/18/1616-分割两个字符串得到回文串/</a>
+      <a href="https://a937840250.github.io/2023/03/19/1625-%E6%89%A7%E8%A1%8C%E6%93%8D%E4%BD%9C%E5%90%8E%E5%AD%97%E5%85%B8%E5%BA%8F%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2/" title="1625.执行操作后字典序最小的字符串">https://a937840250.github.io/2023/03/19/1625-执行操作后字典序最小的字符串/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -303,21 +307,18 @@
 
           <div class="post-tags">
               <a href="/tags/LeetCode%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/" rel="tag"># LeetCode每日一题</a>
-              <a href="/tags/%E5%8F%8C%E6%8C%87%E9%92%88/" rel="tag"># 双指针</a>
+              <a href="/tags/%E6%9E%9A%E4%B8%BE/" rel="tag"># 枚举</a>
           </div>
 
         
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2023/03/17/2389-%E5%92%8C%E6%9C%89%E9%99%90%E7%9A%84%E6%9C%80%E9%95%BF%E5%AD%90%E5%BA%8F%E5%88%97/" rel="prev" title="2389.和有限的最长子序列">
-                  <i class="fa fa-chevron-left"></i> 2389.和有限的最长子序列
+                <a href="/2023/03/18/1616-%E5%88%86%E5%89%B2%E4%B8%A4%E4%B8%AA%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%BE%97%E5%88%B0%E5%9B%9E%E6%96%87%E4%B8%B2/" rel="prev" title="1616.分割两个字符串得到回文串">
+                  <i class="fa fa-chevron-left"></i> 1616.分割两个字符串得到回文串
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2023/03/19/1625-%E6%89%A7%E8%A1%8C%E6%93%8D%E4%BD%9C%E5%90%8E%E5%AD%97%E5%85%B8%E5%BA%8F%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2/" rel="next" title="1625.执行操作后字典序最小的字符串">
-                  1625.执行操作后字典序最小的字符串 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
@@ -408,7 +409,7 @@
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
 
-<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"a937840250","repo":"a937840250","client_id":"9f2c7299881b2946b170","client_secret":"9e5ee70c208b7d935519d46e21b22168b55f2027","admin_user":"a937840250","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"f3e2a1a3e96673221374cb7fa4b93d06"}</script>
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"a937840250","repo":"a937840250","client_id":"9f2c7299881b2946b170","client_secret":"9e5ee70c208b7d935519d46e21b22168b55f2027","admin_user":"a937840250","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"f9f237dde9f4a03b549bd98976106fa7"}</script>
 <script src="/js/third-party/comments/gitalk.js"></script>
 
 </body>

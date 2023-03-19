@@ -88,7 +88,7 @@
 
 
 <nav class="site-nav">
-  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">8</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">1</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">6</span></a></li>
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">9</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">1</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">7</span></a></li>
       <li class="menu-item menu-item-search">
         <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
         </a>
@@ -153,7 +153,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">6</span>
+          <span class="site-state-item-count">7</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -164,7 +164,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -189,6 +189,106 @@
     </div>
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="https://a937840250.github.io/2023/03/19/1625-%E6%89%A7%E8%A1%8C%E6%93%8D%E4%BD%9C%E5%90%8E%E5%AD%97%E5%85%B8%E5%BA%8F%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="小码农">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="唯静美">
+      <meta itemprop="description" content="唯有静下心来，才能发现美的存在！">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="undefined | 唯静美">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2023/03/19/1625-%E6%89%A7%E8%A1%8C%E6%93%8D%E4%BD%9C%E5%90%8E%E5%AD%97%E5%85%B8%E5%BA%8F%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2/" class="post-title-link" itemprop="url">1625.执行操作后字典序最小的字符串</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2023-03-19 22:27:44 / 修改时间：23:48:42" itemprop="dateCreated datePublished" datetime="2023-03-19T22:27:44+08:00">2023-03-19</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/LeetCode%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/" itemprop="url" rel="index"><span itemprop="name">LeetCode每日一题</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>题目来自LeetCode：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/lexicographically-smallest-string-after-applying-operations/">https://leetcode.cn/problems/lexicographically-smallest-string-after-applying-operations/</a></p>
+<h1 id="题目（难度：中等）"><a href="#题目（难度：中等）" class="headerlink" title="题目（难度：中等）"></a>题目（难度：中等）</h1><p>给你一个字符串 s 以及两个整数 a 和 b 。其中，字符串 s 的长度为偶数，且仅由数字 0 到 9 组成。<br>你可以在 s 上按任意顺序多次执行下面两个操作之一：</p>
+<ul>
+<li>累加：将  a 加到 s 中所有下标为奇数的元素上 <strong>（下标从 0 开始）</strong>。数字一旦超过 9 就会变成 0，如此循环往复。例如，s &#x3D; “3456” 且 a &#x3D; 5，则执行此操作后 s 变成 “3951”。</li>
+<li>轮转：将 s 向右轮转 b 位。例如，s &#x3D; “3456” 且 b &#x3D; 1，则执行此操作后 s 变成 “6345”。</li>
+</ul>
+<p>请你返回在 s 上执行上述操作任意次后可以得到的 <strong>字典序最小</strong> 的字符串。<br>如果两个字符串长度相同，那么字符串 a 字典序比字符串 b 小可以这样定义：在 a 和 b 出现不同的第一个位置上，字符串 a 中的字符出现在字母表中的时间早于 b 中的对应字符。例如，”0158” 字典序比 “0190” 小，因为不同的第一个位置是在第三个字符，显然 ‘5’ 出现在 ‘9’ 之前。<br><strong>示例 1：</strong></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">输入：s = <span class="string">&quot;5525&quot;</span>, a = <span class="number">9</span>, b = <span class="number">2</span></span><br><span class="line">输出：<span class="string">&quot;2050&quot;</span></span><br><span class="line">解释：执行操作如下：</span><br><span class="line">初态：<span class="string">&quot;5525&quot;</span></span><br><span class="line">轮转：<span class="string">&quot;2555&quot;</span></span><br><span class="line">累加：<span class="string">&quot;2454&quot;</span></span><br><span class="line">累加：<span class="string">&quot;2353&quot;</span></span><br><span class="line">轮转：<span class="string">&quot;5323&quot;</span></span><br><span class="line">累加：<span class="string">&quot;5222&quot;</span></span><br><span class="line">累加：<span class="string">&quot;5121&quot;</span></span><br><span class="line">轮转：<span class="string">&quot;2151&quot;</span></span><br><span class="line">累加：<span class="string">&quot;2050&quot;</span>​​​​​​​​​​​​</span><br><span class="line">无法获得字典序小于 <span class="string">&quot;2050&quot;</span> 的字符串。</span><br></pre></td></tr></table></figure>
+<p><strong>提示：</strong></p>
+<ul>
+<li>2 &lt;&#x3D; s.length &lt;&#x3D; 100</li>
+<li>s.length 是偶数</li>
+<li>s 仅由数字 0 到 9 组成</li>
+<li>1 &lt;&#x3D; a &lt;&#x3D; 9</li>
+<li>1 &lt;&#x3D; b &lt;&#x3D; s.length - 1
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2023/03/19/1625-%E6%89%A7%E8%A1%8C%E6%93%8D%E4%BD%9C%E5%90%8E%E5%AD%97%E5%85%B8%E5%BA%8F%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
