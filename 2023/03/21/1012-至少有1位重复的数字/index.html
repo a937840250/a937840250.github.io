@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)"><meta name="generator" content="Hexo 6.3.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha256-/4UQcSmErDzPCMAiuOiWPVVsNN2s3ZY/NsmXNcj0IFc=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"a937840250.github.io","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.15.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":{"enable":true,"style":"default"},"bookmark":{"enable":true,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":true,"pangu":true,"comments":{"style":"tabs","active":"gitalk","storage":true,"lazyload":true,"nav":null,"activeClass":"gitalk"},"stickytabs":false,"motion":{"enable":true,"async":true,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":-1,"unescape":true,"preload":false}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="前言题目来自LeetCode：https:&#x2F;&#x2F;leetcode.cn&#x2F;problems&#x2F;numbers-with-repeated-digits&#x2F; 题目（难度：困难）给定正整数 n，返回在 [1, n] 范围内具有 至少 1 位 重复数字的正整数的个数。 示例1  输入：n &#x3D; 20输出：1解释：具有至少 1 位重复数字的正数（&lt;&#x3D; 20）只有 11 。  示例 2：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="1012.至少有1位重复的数字">
+<meta property="og:url" content="https://a937840250.github.io/2023/03/21/1012-%E8%87%B3%E5%B0%91%E6%9C%891%E4%BD%8D%E9%87%8D%E5%A4%8D%E7%9A%84%E6%95%B0%E5%AD%97/index.html">
+<meta property="og:site_name" content="唯静美">
+<meta property="og:description" content="前言题目来自LeetCode：https:&#x2F;&#x2F;leetcode.cn&#x2F;problems&#x2F;numbers-with-repeated-digits&#x2F; 题目（难度：困难）给定正整数 n，返回在 [1, n] 范围内具有 至少 1 位 重复数字的正整数的个数。 示例1  输入：n &#x3D; 20输出：1解释：具有至少 1 位重复数字的正数（&lt;&#x3D; 20）只有 11 。  示例 2：">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://a937840250.github.io/2023/03/21/1012-%E8%87%B3%E5%B0%91%E6%9C%891%E4%BD%8D%E9%87%8D%E5%A4%8D%E7%9A%84%E6%95%B0%E5%AD%97/%E6%95%B0%E4%BD%8D%E9%99%90%E5%88%B6%E6%9D%A1%E4%BB%B61.png">
+<meta property="og:image" content="https://a937840250.github.io/2023/03/21/1012-%E8%87%B3%E5%B0%91%E6%9C%891%E4%BD%8D%E9%87%8D%E5%A4%8D%E7%9A%84%E6%95%B0%E5%AD%97/%E9%9B%86%E5%90%88%E4%B8%8E%E4%BD%8D%E8%BF%90%E7%AE%97.png">
+<meta property="article:published_time" content="2023-03-21T09:30:27.000Z">
+<meta property="article:modified_time" content="2023-03-21T16:33:08.452Z">
+<meta property="article:author" content="小码农">
+<meta property="article:tag" content="LeetCode每日一题">
+<meta property="article:tag" content="数位dp">
+<meta property="article:tag" content="记忆化搜索">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://a937840250.github.io/2023/03/21/1012-%E8%87%B3%E5%B0%91%E6%9C%891%E4%BD%8D%E9%87%8D%E5%A4%8D%E7%9A%84%E6%95%B0%E5%AD%97/%E6%95%B0%E4%BD%8D%E9%99%90%E5%88%B6%E6%9D%A1%E4%BB%B61.png">
+
+
+<link rel="canonical" href="https://a937840250.github.io/2023/03/21/1012-%E8%87%B3%E5%B0%91%E6%9C%891%E4%BD%8D%E9%87%8D%E5%A4%8D%E7%9A%84%E6%95%B0%E5%AD%97/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"https://a937840250.github.io/2023/03/21/1012-%E8%87%B3%E5%B0%91%E6%9C%891%E4%BD%8D%E9%87%8D%E5%A4%8D%E7%9A%84%E6%95%B0%E5%AD%97/","path":"2023/03/21/1012-至少有1位重复的数字/","title":"1012.至少有1位重复的数字"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>1012.至少有1位重复的数字 | 唯静美</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">唯静美</p>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">唯有静下心来，才能发现美的存在！</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="搜索" role="button">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">11</span></a></li><li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">1</span></a></li><li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">8</span></a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%89%8D%E8%A8%80"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%EF%BC%88%E9%9A%BE%E5%BA%A6%EF%BC%9A%E5%9B%B0%E9%9A%BE%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">题目（难度：困难）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%A2%98%E8%A7%A3"><span class="nav-number">3.</span> <span class="nav-text">题解</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%A3%E7%A0%81"><span class="nav-number">4.</span> <span class="nav-text">代码</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="小码农"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">小码农</p>
+  <div class="site-description" itemprop="description">唯有静下心来，才能发现美的存在！</div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">8</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/a937840250" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;a937840250" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i></a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:937840250@qq.com" title="E-Mail → mailto:937840250@qq.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i></a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://a937840250.github.io/2023/03/21/1012-%E8%87%B3%E5%B0%91%E6%9C%891%E4%BD%8D%E9%87%8D%E5%A4%8D%E7%9A%84%E6%95%B0%E5%AD%97/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="小码农">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="唯静美">
+      <meta itemprop="description" content="唯有静下心来，才能发现美的存在！">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="1012.至少有1位重复的数字 | 唯静美">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          1012.至少有1位重复的数字
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2023-03-21 17:30:27" itemprop="dateCreated datePublished" datetime="2023-03-21T17:30:27+08:00">2023-03-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">更新于</span>
+      <time title="修改时间：2023-03-22 00:33:08" itemprop="dateModified" datetime="2023-03-22T00:33:08+08:00">2023-03-22</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/LeetCode%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/" itemprop="url" rel="index"><span itemprop="name">LeetCode每日一题</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>题目来自LeetCode：<a target="_blank" rel="noopener" href="https://leetcode.cn/problems/numbers-with-repeated-digits/">https://leetcode.cn/problems/numbers-with-repeated-digits/</a></p>
+<h1 id="题目（难度：困难）"><a href="#题目（难度：困难）" class="headerlink" title="题目（难度：困难）"></a>题目（难度：困难）</h1><p>给定正整数 n，返回在 [1, n] 范围内具有 <strong>至少 1 位</strong> 重复数字的正整数的个数。</p>
+<p><strong>示例1</strong></p>
+<blockquote>
+<p><strong>输入</strong>：n &#x3D; 20<br><strong>输出</strong>：1<br><strong>解释</strong>：具有至少 1 位重复数字的正数（&lt;&#x3D; 20）只有 11 。</p>
+</blockquote>
+<p><strong>示例 2</strong>：</p>
+<blockquote>
+<p><strong>输入</strong>：n &#x3D; 100<br><strong>输出</strong>：10<br><strong>解释</strong>：具有至少 1 位重复数字的正数（&lt;&#x3D; 100）有 11，22，33，44，55，66，77，88，99 和 100 。</p>
+</blockquote>
+<p><strong>提示</strong>：</p>
+<ul>
+<li>1 &lt;&#x3D; n &lt;&#x3D; 10^9<span id="more"></span></li>
+</ul>
+<h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><p>本题题目由于n过大，O(n)也会超出时间限制，即不能通过直接遍历得出答案，那么剩下的就是组合数学，一般组合数学的题目都可以用数位dp来解决。<strong>数位dp的介绍可以参考</strong><a target="_blank" rel="noopener" href="https://oi-wiki.org/dp/number/">OI wiki</a>。<br>本题要求至少有一位重复数字的数，分情况来说的话，有2个同、3个相同…k个相同(k小于等于n的位数)，正向思考的话情况过于复杂，不妨逆向思考，求出每个数位都不相同的数f，那么至少有一位重复数字的总数为n-f，因为这两种情况互补。</p>
+<p>对位数进行dfs(深度搜索)，从高位一直到低位，当搜索到最后一位，返回1或0，表示找到了或没找到一个符合条件的数字。</p>
+<p><img data-src="/2023/03/21/1012-%E8%87%B3%E5%B0%91%E6%9C%891%E4%BD%8D%E9%87%8D%E5%A4%8D%E7%9A%84%E6%95%B0%E5%AD%97/%E6%95%B0%E4%BD%8D%E9%99%90%E5%88%B6%E6%9D%A1%E4%BB%B61.png" alt="数位限制条件1"></p>
+<p>每位数字都有限制条件，如图，数字456，最高位可以填0-4(0可以代表没填或则前导0), 除去最高位后，都有两种情况(以次高位5做解释)：</p>
+<ul>
+<li>当前一位数取到n中对应位数的值(即最高位取到4)，那么当前位只能取到n中对应位数的值(5)，即上图中的第一个范围(0-5),因为这个数不能大于n。</li>
+<li>当前一位数没有取到n中对应位数的值(即最高位取到0-3)，那么当前位置没有限制(0-9)，即上图中第二个范围。</li>
+</ul>
+<p>解决了第一个限制条件，则要考虑现在要求每个数位上的数都不相同的数，那么当搜索到第k个数位的时候必须知道前面的数位都取了什么，所以需要标记都取过哪些数，可以用一个set集合当标记，当然更好的方法是用一个数去标记(不用耗费额外的空间和时间去判断，加上后面需要记忆化的时候更简单)，这就涉及到二进制与集合的关系：<br><img data-src="/2023/03/21/1012-%E8%87%B3%E5%B0%91%E6%9C%891%E4%BD%8D%E9%87%8D%E5%A4%8D%E7%9A%84%E6%95%B0%E5%AD%97/%E9%9B%86%E5%90%88%E4%B8%8E%E4%BD%8D%E8%BF%90%E7%AE%97.png" alt="集合与位运算"><br>因为这个集合只记录0-9十个数，所以可以用标记数mask的二进制数的位数代表0-9，从低位开始依次表示0-9，二进制数中1代表该位代表的数在集合里，否则不在集合里，例如(101000)<sub>2</sub>，从0开始从右往左数，第一个1在第四位，也就是代表3，第二个1在第六位，代表的是5，所以整个2进制数代表集合{3,5}，那么有如下操作：</p>
+<ul>
+<li>添加一个数k进集合：(1 &lt;&lt; k) | mask，如上图，按添加4进集合{3,5}中为例子，1的二进制数为(0…01)<sub>2</sub>,左移4位后变成(0…010000)<sub>2</sub>,因为从低位从0开始，左移4位后，1的右面是有4个0，所以左移4位后就是在集合中代表4这个数，|(按位或操作)上mask后，mask为(111000)<sub>2</sub>，这时mask代表的集合为{3,4,5}。</li>
+<li>查询一个数k是否在集合中：(mask &gt;&gt; k) &amp; 1,mask右移k位，相当让k+1位移动到最低位，&amp;(按位与操作)上1后，相当于只保留最低位的值，如果是1，则代表k在集合中，否则代表k不在集合中。</li>
+<li>从集合中删除一个数k(本题没涉及删除操作)：((2^11-2) &lt;&lt; k + 2^k - 1) &amp; mask, 因为只有10个数，只需要10位表示，2^11-2的二进制是(1111111110)<sub>2</sub>,左移k位后再将左移产生的k个0填回1，即(1111011111)<sub>2</sub>，在&amp;(按位与操作)mask，即可在集合中删除k。</li>
+</ul>
+<p>当每一位取数的限制已经确定，那就可以递归遍历每一位数的情况，但是所有情况还是会超出时间的限制，仔细思考算12345和13345时，后面的345是重复计算的，可以用一个数组或则哈希表给他存起来，当再次需要用的时候再从里面取，而不是重新计算一次，这样就可以大大降低所需要的时间，这称为记忆化搜索。对于本题，需要记录的是当递归到第i位时，集合mask所得的结果。</p>
+<p>构造递归函数f：f(int i, int mask, boolean isLimit, boolean isNum)</p>
+<ul>
+<li>i：当前搜索的位数</li>
+<li>mask：所取过的数的集合</li>
+<li>isLimit：是否受限制，也就是取0-9还是0-n中第i位的数。当为false时，代表不受限制，可以取0-9，否则就是另外一种情况</li>
+<li>isNum：前面是否有填过数，当前面全0时，代表没填过数，如果前面全为0时(也就是为false)，有两种情况，当前位填0代表跳过当前位，如果是0以外则是该位不跳过。</li>
+</ul>
+<p>递归结束标志：当i等与n的总位数时<br>初始状态：f(0,0,true,false)，从第1位开始，由于方便记忆数组，所以下标从0开始，mask一开始空集，自然为0，第一位数是一定受限制的，一开始没填数，所以isNum也是false；</p>
+<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="type">char</span>[] s;</span><br><span class="line">    <span class="comment">//保存计算过的结果</span></span><br><span class="line">    <span class="type">int</span>[][] dp;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">numDupDigitsAtMostN</span><span class="params">(<span class="type">int</span> n)</span> &#123;</span><br><span class="line">        <span class="comment">//将数字转化成字符串，便于操作</span></span><br><span class="line">        s = String.valueOf(n).toCharArray();</span><br><span class="line">        <span class="comment">//dp[i][mask] 代表第i位选了mask集合的结果</span></span><br><span class="line">        dp = <span class="keyword">new</span> <span class="title class_">int</span>[s.length][<span class="number">1</span> &lt;&lt; <span class="number">10</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; s.length; i++) &#123;</span><br><span class="line">            Arrays.fill(dp[i], -<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> n - f(<span class="number">0</span>, <span class="number">0</span>, <span class="literal">true</span>, <span class="literal">false</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//递归函数</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">f</span><span class="params">(<span class="type">int</span> i, <span class="type">int</span> mask, <span class="type">boolean</span> isLimit, <span class="type">boolean</span> isNum)</span> &#123;</span><br><span class="line">        <span class="comment">//递归结束条件</span></span><br><span class="line">        <span class="keyword">if</span>(i == s.length)&#123;</span><br><span class="line">            <span class="comment">//如果是一个合法的数则返回1</span></span><br><span class="line">            <span class="keyword">return</span> isNum ? <span class="number">1</span> : <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//当要计算的结果在dp中，直接用</span></span><br><span class="line">        <span class="keyword">if</span>(!isLimit &amp;&amp; isNum &amp;&amp; dp[i][mask] != -<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> dp[i][mask];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> <span class="variable">res</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="comment">//如果前面没有填过数，这是第一种情况填0，跳过当前位</span></span><br><span class="line">        <span class="keyword">if</span>(!isNum)&#123;</span><br><span class="line">            res = f(i + <span class="number">1</span>, mask, <span class="literal">false</span>, <span class="literal">false</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//确定上限</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">up</span> <span class="operator">=</span> isLimit ? (s[i] - <span class="string">&#x27;0&#x27;</span>) : <span class="number">9</span>;</span><br><span class="line">        <span class="comment">//遍历可能能取的数，当isNum为false时，进入第二种情况，不跳过，也就是从1开始，</span></span><br><span class="line">        <span class="comment">//当isNum为true时，代表前面填过数，不必区分下限</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">k</span> <span class="operator">=</span> isNum ? <span class="number">0</span> : <span class="number">1</span>; k &lt;= up; k++)&#123;</span><br><span class="line">            <span class="comment">//判断当前要取的数是否在集合里，也就是判断之前取过没有</span></span><br><span class="line">            <span class="keyword">if</span>((mask &gt;&gt; k &amp; <span class="number">1</span>) == <span class="number">0</span>)&#123;</span><br><span class="line">                <span class="comment">//mask|(1&lt;&lt;k)是将k加到集合中去，下一位受到限制的条件是当前位受限制并且当前位取得是上限</span></span><br><span class="line">                res += f(i + <span class="number">1</span>, mask | (<span class="number">1</span> &lt;&lt; k), isLimit &amp;&amp; k == up, <span class="literal">true</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//如果该值没有被记录过，则记录</span></span><br><span class="line">        <span class="keyword">if</span>(dp[i][mask] == -<span class="number">1</span>)&#123;</span><br><span class="line">            dp[i][mask] = res;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          
+
+<div class="post-copyright">
+<ul>
+  <li class="post-copyright-author">
+      <strong>本文作者： </strong>小码农
+  </li>
+  <li class="post-copyright-link">
+      <strong>本文链接：</strong>
+      <a href="https://a937840250.github.io/2023/03/21/1012-%E8%87%B3%E5%B0%91%E6%9C%891%E4%BD%8D%E9%87%8D%E5%A4%8D%E7%9A%84%E6%95%B0%E5%AD%97/" title="1012.至少有1位重复的数字">https://a937840250.github.io/2023/03/21/1012-至少有1位重复的数字/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+          <div class="post-tags">
+              <a href="/tags/LeetCode%E6%AF%8F%E6%97%A5%E4%B8%80%E9%A2%98/" rel="tag"># LeetCode每日一题</a>
+              <a href="/tags/%E6%95%B0%E4%BD%8Ddp/" rel="tag"># 数位dp</a>
+              <a href="/tags/%E8%AE%B0%E5%BF%86%E5%8C%96%E6%90%9C%E7%B4%A2/" rel="tag"># 记忆化搜索</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2023/03/19/1625-%E6%89%A7%E8%A1%8C%E6%93%8D%E4%BD%9C%E5%90%8E%E5%AD%97%E5%85%B8%E5%BA%8F%E6%9C%80%E5%B0%8F%E7%9A%84%E5%AD%97%E7%AC%A6%E4%B8%B2/" rel="prev" title="1625.执行操作后字典序最小的字符串">
+                  <i class="fa fa-chevron-left"></i> 1625.执行操作后字典序最小的字符串
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+    <div class="comments gitalk-container"></div>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">小码农</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+  <a role="button" class="book-mark-link book-mark-link-fixed"></a>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lozad.js/1.16.0/lozad.min.js" integrity="sha256-mOFREFhqmHeQbXpK2lp4nA3qooVgACfh88fpJftLBbc=" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pangu/4.0.7/pangu.min.js" integrity="sha256-j+yj56cdEY2CwkVtGyz18fNybFGpMGJ8JxG3GSyO2+I=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/bookmark.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/hexo-generator-searchdb/1.4.1/search.js" integrity="sha256-1kfA5uHPf65M5cphT2dvymhkuyHPQp5A53EGZOnOLmc=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+  <script class="next-config" data-name="mermaid" type="application/json">{"enable":true,"theme":{"light":"neutral","dark":"dark"},"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/mermaid/9.4.0/mermaid.min.js","integrity":"sha256-3JloMMI/ZQx6ryuhhZTsQJQmGAkXeni6PkshX7UUO2s="}}</script>
+  <script src="/js/third-party/tags/mermaid.js"></script>
+
+  <script src="/js/third-party/fancybox.js"></script>
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.css" integrity="sha256-AJnUHL7dBv6PGaeyPQJcgQPDjt/Hn/PvYZde1iqfp8U=" crossorigin="anonymous">
+
+<script class="next-config" data-name="gitalk" type="application/json">{"enable":true,"github_id":"a937840250","repo":"a937840250","client_id":"9f2c7299881b2946b170","client_secret":"9e5ee70c208b7d935519d46e21b22168b55f2027","admin_user":"a937840250","distraction_free_mode":true,"proxy":"https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token","language":null,"js":{"url":"https://cdnjs.cloudflare.com/ajax/libs/gitalk/1.8.0/gitalk.min.js","integrity":"sha256-MVK9MGD/XJaGyIghSVrONSnoXoGh3IFxLw0zfvzpxR4="},"path_md5":"dda26e27a606fe8f5ba0f411a743b837"}</script>
+<script src="/js/third-party/comments/gitalk.js"></script>
+
+</body>
+</html>

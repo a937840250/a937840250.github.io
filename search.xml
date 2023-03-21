@@ -1,6 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>1012.至少有1位重复的数字</title>
+    <url>/2023/03/21/1012-%E8%87%B3%E5%B0%91%E6%9C%891%E4%BD%8D%E9%87%8D%E5%A4%8D%E7%9A%84%E6%95%B0%E5%AD%97/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>题目来自LeetCode：<a href="https://leetcode.cn/problems/numbers-with-repeated-digits/">https://leetcode.cn/problems/numbers-with-repeated-digits/</a></p>
+<h1 id="题目（难度：困难）"><a href="#题目（难度：困难）" class="headerlink" title="题目（难度：困难）"></a>题目（难度：困难）</h1><p>给定正整数 n，返回在 [1, n] 范围内具有 <strong>至少 1 位</strong> 重复数字的正整数的个数。</p>
+<p><strong>示例1</strong></p>
+<blockquote>
+<p><strong>输入</strong>：n &#x3D; 20<br><strong>输出</strong>：1<br><strong>解释</strong>：具有至少 1 位重复数字的正数（&lt;&#x3D; 20）只有 11 。</p>
+</blockquote>
+<p><strong>示例 2</strong>：</p>
+<blockquote>
+<p><strong>输入</strong>：n &#x3D; 100<br><strong>输出</strong>：10<br><strong>解释</strong>：具有至少 1 位重复数字的正数（&lt;&#x3D; 100）有 11，22，33，44，55，66，77，88，99 和 100 。</p>
+</blockquote>
+<p><strong>提示</strong>：</p>
+<ul>
+<li>1 &lt;&#x3D; n &lt;&#x3D; 10^9<span id="more"></span></li>
+</ul>
+<h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><p>本题题目由于n过大，O(n)也会超出时间限制，即不能通过直接遍历得出答案，那么剩下的就是组合数学，一般组合数学的题目都可以用数位dp来解决。<strong>数位dp的介绍可以参考</strong><a href="https://oi-wiki.org/dp/number/">OI wiki</a>。<br>本题要求至少有一位重复数字的数，分情况来说的话，有2个同、3个相同…k个相同(k小于等于n的位数)，正向思考的话情况过于复杂，不妨逆向思考，求出每个数位都不相同的数f，那么至少有一位重复数字的总数为n-f，因为这两种情况互补。</p>
+<p>对位数进行dfs(深度搜索)，从高位一直到低位，当搜索到最后一位，返回1或0，表示找到了或没找到一个符合条件的数字。</p>
+<p><img data-src="/2023/03/21/1012-%E8%87%B3%E5%B0%91%E6%9C%891%E4%BD%8D%E9%87%8D%E5%A4%8D%E7%9A%84%E6%95%B0%E5%AD%97/%E6%95%B0%E4%BD%8D%E9%99%90%E5%88%B6%E6%9D%A1%E4%BB%B61.png" alt="数位限制条件1"></p>
+<p>每位数字都有限制条件，如图，数字456，最高位可以填0-4(0可以代表没填或则前导0), 除去最高位后，都有两种情况(以次高位5做解释)：</p>
+<ul>
+<li>当前一位数取到n中对应位数的值(即最高位取到4)，那么当前位只能取到n中对应位数的值(5)，即上图中的第一个范围(0-5),因为这个数不能大于n。</li>
+<li>当前一位数没有取到n中对应位数的值(即最高位取到0-3)，那么当前位置没有限制(0-9)，即上图中第二个范围。</li>
+</ul>
+<p>解决了第一个限制条件，则要考虑现在要求每个数位上的数都不相同的数，那么当搜索到第k个数位的时候必须知道前面的数位都取了什么，所以需要标记都取过哪些数，可以用一个set集合当标记，当然更好的方法是用一个数去标记(不用耗费额外的空间和时间去判断，加上后面需要记忆化的时候更简单)，这就涉及到二进制与集合的关系：<br><img data-src="/2023/03/21/1012-%E8%87%B3%E5%B0%91%E6%9C%891%E4%BD%8D%E9%87%8D%E5%A4%8D%E7%9A%84%E6%95%B0%E5%AD%97/%E9%9B%86%E5%90%88%E4%B8%8E%E4%BD%8D%E8%BF%90%E7%AE%97.png" alt="集合与位运算"><br>因为这个集合只记录0-9十个数，所以可以用标记数mask的二进制数的位数代表0-9，从低位开始依次表示0-9，二进制数中1代表该位代表的数在集合里，否则不在集合里，例如(101000)<sub>2</sub>，从0开始从右往左数，第一个1在第四位，也就是代表3，第二个1在第六位，代表的是5，所以整个2进制数代表集合{3,5}，那么有如下操作：</p>
+<ul>
+<li>添加一个数k进集合：(1 &lt;&lt; k) | mask，如上图，按添加4进集合{3,5}中为例子，1的二进制数为(0…01)<sub>2</sub>,左移4位后变成(0…010000)<sub>2</sub>,因为从低位从0开始，左移4位后，1的右面是有4个0，所以左移4位后就是在集合中代表4这个数，|(按位或操作)上mask后，mask为(111000)<sub>2</sub>，这时mask代表的集合为{3,4,5}。</li>
+<li>查询一个数k是否在集合中：(mask &gt;&gt; k) &amp; 1,mask右移k位，相当让k+1位移动到最低位，&amp;(按位与操作)上1后，相当于只保留最低位的值，如果是1，则代表k在集合中，否则代表k不在集合中。</li>
+<li>从集合中删除一个数k(本题没涉及删除操作)：((2^11-2) &lt;&lt; k + 2^k - 1) &amp; mask, 因为只有10个数，只需要10位表示，2^11-2的二进制是(1111111110)<sub>2</sub>,左移k位后再将左移产生的k个0填回1，即(1111011111)<sub>2</sub>，在&amp;(按位与操作)mask，即可在集合中删除k。</li>
+</ul>
+<p>当每一位取数的限制已经确定，那就可以递归遍历每一位数的情况，但是所有情况还是会超出时间的限制，仔细思考算12345和13345时，后面的345是重复计算的，可以用一个数组或则哈希表给他存起来，当再次需要用的时候再从里面取，而不是重新计算一次，这样就可以大大降低所需要的时间，这称为记忆化搜索。对于本题，需要记录的是当递归到第i位时，集合mask所得的结果。</p>
+<p>构造递归函数f：f(int i, int mask, boolean isLimit, boolean isNum)</p>
+<ul>
+<li>i：当前搜索的位数</li>
+<li>mask：所取过的数的集合</li>
+<li>isLimit：是否受限制，也就是取0-9还是0-n中第i位的数。当为false时，代表不受限制，可以取0-9，否则就是另外一种情况</li>
+<li>isNum：前面是否有填过数，当前面全0时，代表没填过数，如果前面全为0时(也就是为false)，有两种情况，当前位填0代表跳过当前位，如果是0以外则是该位不跳过。</li>
+</ul>
+<p>递归结束标志：当i等与n的总位数时<br>初始状态：f(0,0,true,false)，从第1位开始，由于方便记忆数组，所以下标从0开始，mask一开始空集，自然为0，第一位数是一定受限制的，一开始没填数，所以isNum也是false；</p>
+<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="type">char</span>[] s;</span><br><span class="line">    <span class="comment">//保存计算过的结果</span></span><br><span class="line">    <span class="type">int</span>[][] dp;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">numDupDigitsAtMostN</span><span class="params">(<span class="type">int</span> n)</span> &#123;</span><br><span class="line">        <span class="comment">//将数字转化成字符串，便于操作</span></span><br><span class="line">        s = String.valueOf(n).toCharArray();</span><br><span class="line">        <span class="comment">//dp[i][mask] 代表第i位选了mask集合的结果</span></span><br><span class="line">        dp = <span class="keyword">new</span> <span class="title class_">int</span>[s.length][<span class="number">1</span> &lt;&lt; <span class="number">10</span>];</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; s.length; i++) &#123;</span><br><span class="line">            Arrays.fill(dp[i], -<span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> n - f(<span class="number">0</span>, <span class="number">0</span>, <span class="literal">true</span>, <span class="literal">false</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//递归函数</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">f</span><span class="params">(<span class="type">int</span> i, <span class="type">int</span> mask, <span class="type">boolean</span> isLimit, <span class="type">boolean</span> isNum)</span> &#123;</span><br><span class="line">        <span class="comment">//递归结束条件</span></span><br><span class="line">        <span class="keyword">if</span>(i == s.length)&#123;</span><br><span class="line">            <span class="comment">//如果是一个合法的数则返回1</span></span><br><span class="line">            <span class="keyword">return</span> isNum ? <span class="number">1</span> : <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//当要计算的结果在dp中，直接用</span></span><br><span class="line">        <span class="keyword">if</span>(!isLimit &amp;&amp; isNum &amp;&amp; dp[i][mask] != -<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> dp[i][mask];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> <span class="variable">res</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="comment">//如果前面没有填过数，这是第一种情况填0，跳过当前位</span></span><br><span class="line">        <span class="keyword">if</span>(!isNum)&#123;</span><br><span class="line">            res = f(i + <span class="number">1</span>, mask, <span class="literal">false</span>, <span class="literal">false</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//确定上限</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">up</span> <span class="operator">=</span> isLimit ? (s[i] - <span class="string">&#x27;0&#x27;</span>) : <span class="number">9</span>;</span><br><span class="line">        <span class="comment">//遍历可能能取的数，当isNum为false时，进入第二种情况，不跳过，也就是从1开始，</span></span><br><span class="line">        <span class="comment">//当isNum为true时，代表前面填过数，不必区分下限</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">k</span> <span class="operator">=</span> isNum ? <span class="number">0</span> : <span class="number">1</span>; k &lt;= up; k++)&#123;</span><br><span class="line">            <span class="comment">//判断当前要取的数是否在集合里，也就是判断之前取过没有</span></span><br><span class="line">            <span class="keyword">if</span>((mask &gt;&gt; k &amp; <span class="number">1</span>) == <span class="number">0</span>)&#123;</span><br><span class="line">                <span class="comment">//mask|(1&lt;&lt;k)是将k加到集合中去，下一位受到限制的条件是当前位受限制并且当前位取得是上限</span></span><br><span class="line">                res += f(i + <span class="number">1</span>, mask | (<span class="number">1</span> &lt;&lt; k), isLimit &amp;&amp; k == up, <span class="literal">true</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//如果该值没有被记录过，则记录</span></span><br><span class="line">        <span class="keyword">if</span>(dp[i][mask] == -<span class="number">1</span>)&#123;</span><br><span class="line">            dp[i][mask] = res;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>LeetCode每日一题</category>
+      </categories>
+      <tags>
+        <tag>LeetCode每日一题</tag>
+        <tag>数位dp</tag>
+        <tag>记忆化搜索</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>1605.给定行和列的和求可行矩阵</title>
     <url>/2023/03/14/1605-%E7%BB%99%E5%AE%9A%E8%A1%8C%E5%92%8C%E5%88%97%E7%9A%84%E5%92%8C%E6%B1%82%E5%8F%AF%E8%A1%8C%E7%9F%A9%E9%98%B5/</url>
     <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>题目来自LeetCode：<a href="https://leetcode.cn/problems/find-valid-matrix-given-row-and-column-sums/">https://leetcode.cn/problems/find-valid-matrix-given-row-and-column-sums/</a></p>
@@ -19,24 +69,6 @@
       <tags>
         <tag>LeetCode每日一题</tag>
         <tag>贪心</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>2383.赢得比赛需要的最少训练时长</title>
-    <url>/2023/03/13/2383-%E8%B5%A2%E5%BE%97%E6%AF%94%E8%B5%9B%E9%9C%80%E8%A6%81%E7%9A%84%E6%9C%80%E5%B0%91%E8%AE%AD%E7%BB%83%E6%97%B6%E9%95%BF/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>题目来自LeetCode：<a href="https://leetcode.cn/problems/minimum-hours-of-training-to-win-a-competition/">https://leetcode.cn/problems/minimum-hours-of-training-to-win-a-competition/</a></p>
-<h1 id="题目（难度：简单）"><a href="#题目（难度：简单）" class="headerlink" title="题目（难度：简单）"></a>题目（难度：简单）</h1><p>你正在参加一场比赛，给你两个 正 整数 initialEnergy 和 initialExperience 分别表示你的初始精力和初始经验。<br>另给你两个下标从 0 开始的整数数组 energy 和 experience，长度均为 n 。<br>你将会 依次 对上 n 个对手。第 i 个对手的精力和经验分别用 energy[i] 和 experience[i] 表示。当你对上对手时，需要在经验和精力上都 严格 超过对手才能击败他们，然后在可能的情况下继续对上下一个对手。<br>击败第 i 个对手会使你的经验 增加 experience[i]，但会将你的精力 减少  energy[i] 。<br>在开始比赛前，你可以训练几个小时。每训练一个小时，你可以选择将增加经验增加 1 或者 将精力增加 1 。<br>返回击败全部 n 个对手需要训练的 最少 小时数目。</p>
-<p>实例1</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：initialEnergy = 5, initialExperience = 3, energy = [1,4,3,2], experience = [2,6,3,1]</span><br><span class="line">输出：8</span><br><span class="line">解释：在 6 小时训练后，你可以将精力提高到 11 ，并且再训练 2 个小时将经验提高到 5 。</span><br><span class="line">按以下顺序与对手比赛：</span><br><span class="line">- 你的精力与经验都超过第 0 个对手，所以获胜。</span><br><span class="line">  精力变为：11 - 1 = 10 ，经验变为：5 + 2 = 7 。</span><br><span class="line">- 你的精力与经验都超过第 1 个对手，所以获胜。</span><br><span class="line">  精力变为：10 - 4 = 6 ，经验变为：7 + 6 = 13 。</span><br><span class="line">- 你的精力与经验都超过第 2 个对手，所以获胜。</span><br><span class="line">  精力变为：6 - 3 = 3 ，经验变为：13 + 3 = 16 。</span><br><span class="line">- 你的精力与经验都超过第 3 个对手，所以获胜。</span><br><span class="line">  精力变为：3 - 2 = 1 ，经验变为：16 + 1 = 17 。</span><br><span class="line">在比赛前进行了 8 小时训练，所以返回 8 。</span><br><span class="line">可以证明不存在更小的答案。</span><br></pre></td></tr></table></figure>
-<span id="more"></span>
-<h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><p>简单的模拟题，因为每击败一个敌人会增加经验，减少精力（击败敌人条件：精力和经验严格大于敌人），所以精力所需是敌人精力的总和加1，经验需要保证initialExperience + 第i个敌人之前的经验总和 &gt; 第i个敌人的经验即可。</p>
-<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">minNumberOfHours</span><span class="params">(<span class="type">int</span> initialEnergy, <span class="type">int</span> initialExperience, <span class="type">int</span>[] energy, <span class="type">int</span>[] experience)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">sumEnergy</span> <span class="operator">=</span> <span class="number">0</span>; <span class="comment">//总精力</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">res</span> <span class="operator">=</span> <span class="number">0</span>; <span class="comment">//需要训练的时长</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; energy.length; i++)&#123;</span><br><span class="line">            sumEnergy += energy[i];</span><br><span class="line">            <span class="comment">//判断initialExperience + 第i个敌人之前的经验总和 与 第i个敌人的经验</span></span><br><span class="line">            <span class="keyword">if</span>(initialExperience &lt;= experience[i])&#123; </span><br><span class="line">                <span class="comment">//少则训练到比当前敌人经验多1</span></span><br><span class="line">                res += experience[i] - initialExperience + <span class="number">1</span>;</span><br><span class="line">                initialExperience = experience[i] + <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            initialExperience += experience[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//若需要的总能量大于初始能量 则训练至所需能量</span></span><br><span class="line">        <span class="keyword">if</span>(sumEnergy &gt;= initialEnergy)&#123;</span><br><span class="line">            res += sumEnergy - initialEnergy + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      <categories>
-        <category>LeetCode每日一题</category>
-      </categories>
-      <tags>
-        <tag>LeetCode每日一题</tag>
-        <tag>模拟</tag>
       </tags>
   </entry>
   <entry>
@@ -115,6 +147,24 @@
       <tags>
         <tag>LeetCode每日一题</tag>
         <tag>枚举</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>2383.赢得比赛需要的最少训练时长</title>
+    <url>/2023/03/13/2383-%E8%B5%A2%E5%BE%97%E6%AF%94%E8%B5%9B%E9%9C%80%E8%A6%81%E7%9A%84%E6%9C%80%E5%B0%91%E8%AE%AD%E7%BB%83%E6%97%B6%E9%95%BF/</url>
+    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>题目来自LeetCode：<a href="https://leetcode.cn/problems/minimum-hours-of-training-to-win-a-competition/">https://leetcode.cn/problems/minimum-hours-of-training-to-win-a-competition/</a></p>
+<h1 id="题目（难度：简单）"><a href="#题目（难度：简单）" class="headerlink" title="题目（难度：简单）"></a>题目（难度：简单）</h1><p>你正在参加一场比赛，给你两个 正 整数 initialEnergy 和 initialExperience 分别表示你的初始精力和初始经验。<br>另给你两个下标从 0 开始的整数数组 energy 和 experience，长度均为 n 。<br>你将会 依次 对上 n 个对手。第 i 个对手的精力和经验分别用 energy[i] 和 experience[i] 表示。当你对上对手时，需要在经验和精力上都 严格 超过对手才能击败他们，然后在可能的情况下继续对上下一个对手。<br>击败第 i 个对手会使你的经验 增加 experience[i]，但会将你的精力 减少  energy[i] 。<br>在开始比赛前，你可以训练几个小时。每训练一个小时，你可以选择将增加经验增加 1 或者 将精力增加 1 。<br>返回击败全部 n 个对手需要训练的 最少 小时数目。</p>
+<p>实例1</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">输入：initialEnergy = 5, initialExperience = 3, energy = [1,4,3,2], experience = [2,6,3,1]</span><br><span class="line">输出：8</span><br><span class="line">解释：在 6 小时训练后，你可以将精力提高到 11 ，并且再训练 2 个小时将经验提高到 5 。</span><br><span class="line">按以下顺序与对手比赛：</span><br><span class="line">- 你的精力与经验都超过第 0 个对手，所以获胜。</span><br><span class="line">  精力变为：11 - 1 = 10 ，经验变为：5 + 2 = 7 。</span><br><span class="line">- 你的精力与经验都超过第 1 个对手，所以获胜。</span><br><span class="line">  精力变为：10 - 4 = 6 ，经验变为：7 + 6 = 13 。</span><br><span class="line">- 你的精力与经验都超过第 2 个对手，所以获胜。</span><br><span class="line">  精力变为：6 - 3 = 3 ，经验变为：13 + 3 = 16 。</span><br><span class="line">- 你的精力与经验都超过第 3 个对手，所以获胜。</span><br><span class="line">  精力变为：3 - 2 = 1 ，经验变为：16 + 1 = 17 。</span><br><span class="line">在比赛前进行了 8 小时训练，所以返回 8 。</span><br><span class="line">可以证明不存在更小的答案。</span><br></pre></td></tr></table></figure>
+<span id="more"></span>
+<h1 id="题解"><a href="#题解" class="headerlink" title="题解"></a>题解</h1><p>简单的模拟题，因为每击败一个敌人会增加经验，减少精力（击败敌人条件：精力和经验严格大于敌人），所以精力所需是敌人精力的总和加1，经验需要保证initialExperience + 第i个敌人之前的经验总和 &gt; 第i个敌人的经验即可。</p>
+<h1 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h1><figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Solution</span> &#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">minNumberOfHours</span><span class="params">(<span class="type">int</span> initialEnergy, <span class="type">int</span> initialExperience, <span class="type">int</span>[] energy, <span class="type">int</span>[] experience)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">sumEnergy</span> <span class="operator">=</span> <span class="number">0</span>; <span class="comment">//总精力</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">res</span> <span class="operator">=</span> <span class="number">0</span>; <span class="comment">//需要训练的时长</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; energy.length; i++)&#123;</span><br><span class="line">            sumEnergy += energy[i];</span><br><span class="line">            <span class="comment">//判断initialExperience + 第i个敌人之前的经验总和 与 第i个敌人的经验</span></span><br><span class="line">            <span class="keyword">if</span>(initialExperience &lt;= experience[i])&#123; </span><br><span class="line">                <span class="comment">//少则训练到比当前敌人经验多1</span></span><br><span class="line">                res += experience[i] - initialExperience + <span class="number">1</span>;</span><br><span class="line">                initialExperience = experience[i] + <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            initialExperience += experience[i];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//若需要的总能量大于初始能量 则训练至所需能量</span></span><br><span class="line">        <span class="keyword">if</span>(sumEnergy &gt;= initialEnergy)&#123;</span><br><span class="line">            res += sumEnergy - initialEnergy + <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>LeetCode每日一题</category>
+      </categories>
+      <tags>
+        <tag>LeetCode每日一题</tag>
+        <tag>模拟</tag>
       </tags>
   </entry>
   <entry>
