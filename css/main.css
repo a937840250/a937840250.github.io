@@ -2782,10 +2782,10 @@ body {
   background: url("/images/background.jpg");
   background-repeat: no-repeat;
   background-attachment: fixed;
-  background-position: 100% 100%;
+  background-position: 100% 80%;
 }
 .content-wrap {
-  opacity: 0.8;
+  opacity: 0.9;
 }
 .sidebar-inner {
   background: rgba(255,255,255,0.8) none repeat scroll !important;
